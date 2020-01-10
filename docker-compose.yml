@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  mysql:
+    container_name: rs-lokalise-test-frontend-mysql
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - mysql-volume:/var/lib/mysql
+    networks:
+      - app-network
+volumes:
+  mysql-volume:
+networks:
+  app-network:
