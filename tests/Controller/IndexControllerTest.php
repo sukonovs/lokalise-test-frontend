@@ -6,12 +6,12 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class IndexControllerTest extends WebTestCase
 {
-    public function testSomething()
+    public function testMainAppSelector()
     {
         $client = static::createClient();
         $client->request('GET', '/');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'WIP');
+        $this->assertSelectorExists('#app');
     }
 }
