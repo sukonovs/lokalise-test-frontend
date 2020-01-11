@@ -2,11 +2,11 @@
 
 namespace App\Controller;
 
+use App\Components\FormErrorsAsAnArrayDecorator;
 use App\Entity\Comment;
 use App\Form\CommentType;
 use App\Repository\CommentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -43,7 +43,9 @@ class CommentController extends AbstractController
         $form->submit($request->request->all());
 
         if (!$form->isValid()) {
-            return new JsonResponse($this->getErrorMessages($form), Response::HTTP_BAD_REQUEST);
+            $formErrorDecorator = new FormErrorsAsAnArrayDecorator($form);
+
+            return new JsonResponse($formErrorDecorator->getErrors(), Response::HTTP_BAD_REQUEST);
         }
 
         $entityManager = $this->getDoctrine()->getManager();
@@ -51,27 +53,5 @@ class CommentController extends AbstractController
         $entityManager->flush();
 
         return new JsonResponse(null, Response::HTTP_CREATED);
-    }
-
-    /**
-     * @param FormInterface $form
-     *
-     * @return array
-     */
-    protected function getErrorMessages(FormInterface $form)
-    {
-        $errors = [];
-
-        foreach ($form->getErrors() as $key => $error) {
-            $errors[] = $error->getMessage();
-        }
-
-        foreach ($form->all() as $child) {
-            if (!$child->isValid()) {
-                $errors[$child->getName()] = $this->getErrorMessages($child);
-            }
-        }
-
-        return $errors;
     }
 }
