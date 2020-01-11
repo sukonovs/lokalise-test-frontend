@@ -3,6 +3,7 @@ build:
 
 setup:
 	docker-compose run php composer install
+	docker-compose run node yarn install --no-lockfile
 	docker-compose run node yarn encore production
 	docker-compose run php php bin/console d:d:c
 	docker-compose run php php bin/console d:m:m --no-interaction
