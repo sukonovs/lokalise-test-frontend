@@ -1,7 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}WIP{% endblock %}
+{% block title %}Guest Book{% endblock %}
 
 {% block body %}
-<h1>WIP</h1>
+    <div id="app">
+        <b-navbar toggleable="lg" type="dark" variant="info">
+            <b-navbar-brand href="/">{title}</b-navbar-brand>
+        </b-navbar>
+        <b-container>
+            <div class="mt-4">
+                <b-row v-for="(comment, index) in comments" :key="index" class="mb-1">
+                    <b-col>
+                        <b-card>
+                            <a :href="`mailto:${comment.email}`" class="card-link">{comment.email}</a>
+                            <b-card-text class="mt-2">{comment.text}</b-card-text>
+                        </b-card>
+                    </b-col>
+                </b-row>
+            </div>
+            <b-alert class="mt-4" v-model="error" variant="danger" dismissible v-html="errorMessage"></b-alert>
+            <b-alert class="mt-4" v-model="success" variant="success" dismissible>{successMessage}</b-alert>
+            <b-row class="mt-4">
+                <b-col>
+                    <b-card>
+                        <b-form @submit="onSubmit" id="comment-form">
+                            <b-form-group id="email-group" label="Email address:" label-for="email">
+                                <b-form-input id="email" v-model="form.email" type="email" maxlength="255"
+                                              required></b-form-input>
+                            </b-form-group>
+                            <b-form-group id="text-group" label="Comment:" label-for="text">
+                                <b-form-textarea id="text" v-model="form.text" rows="3" max-rows="6" maxlength="1000"
+                                                 required></b-form-textarea>
+                            </b-form-group>
+                            <b-button type="submit" variant="primary">Add</b-button>
+                        </b-form>
+                    </b-card>
+                </b-col>
+            </b-row>
+        </b-container>
+    </div>
 {% endblock %}
