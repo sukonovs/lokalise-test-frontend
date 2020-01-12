@@ -14,6 +14,7 @@ test:
 	docker-compose run php php bin/phpunit
 
 test_e2e:
+	docker-compose run node yarn install --no-lockfile
 	./node_modules/.bin/nightwatch
 
 end:
