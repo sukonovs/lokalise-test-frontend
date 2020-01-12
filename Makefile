@@ -13,5 +13,8 @@ setup:
 test:
 	docker-compose run php php bin/phpunit
 
+test_e2e:
+	./node_modules/.bin/nightwatch
+
 end:
 	docker-compose down --volumes --rmi local

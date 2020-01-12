@@ -18,3 +18,6 @@
 
 .idea
 /public/build/
+geckodriver.log
+/reports/
+/tests_output/
