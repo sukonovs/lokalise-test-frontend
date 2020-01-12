@@ -14,6 +14,7 @@ new Vue({
             text: '',
         },
         comments: [],
+        title: 'Guest Book',
         error: false,
         errorMessage: '',
         success: false,
