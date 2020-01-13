@@ -6,15 +6,15 @@ describe('App test', function () {
         browser
             .waitForElementVisible('.navbar-brand')
             .assert.titleContains('Guest Book')
-            .assert.visible('input[type=email]')
-            .setValue('input[type=email]', 'test@test.lv')
+            .assert.visible('input#email')
+            .setValue('input#email', 'test@test.lv')
             .assert.visible('textarea#text')
             .setValue('textarea#text', 'Text from test')
-            .assert.visible('button[type=submit]')
-            .click('button[type=submit]')
+            .assert.visible('button#submit')
+            .click('button#submit')
             .assert.containsText('.alert', 'Comment has been added.')
-            .assert.containsText('.card-link', 'test@test.lv')
-            .assert.containsText('.card-text', 'Text from test')
+            .assert.containsText('div.comment-container > .comment:last-child .card-link', 'test@test.lv')
+            .assert.containsText('div.comment-container > .comment:last-child .card-text', 'Text from test')
     });
 
     after(browser => browser.end());

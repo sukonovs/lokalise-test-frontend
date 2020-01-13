@@ -8,8 +8,8 @@
             <b-navbar-brand href="/">{title}</b-navbar-brand>
         </b-navbar>
         <b-container>
-            <div class="mt-4">
-                <b-row v-for="(comment, index) in comments" :key="index" class="mb-1">
+            <div class="mt-4 comment-container">
+                <b-row v-for="(comment, index) in comments" :key="index" class="mb-1 comment">
                     <b-col>
                         <b-card>
                             <a :href="`mailto:${comment.email}`" class="card-link">{comment.email}</a>
@@ -32,7 +32,7 @@
                                 <b-form-textarea id="text" v-model="form.text" rows="3" max-rows="6" maxlength="1000"
                                                  required></b-form-textarea>
                             </b-form-group>
-                            <b-button type="submit" variant="primary">Add</b-button>
+                            <b-button id="submit" type="submit" variant="primary">Add</b-button>
                         </b-form>
                     </b-card>
                 </b-col>
