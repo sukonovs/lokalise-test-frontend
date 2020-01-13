@@ -5,9 +5,9 @@
 ## Installation
 1) Clone/Download repo
 2) run ``make build`` to build containers
-2) run ``make setup`` to setup projects
-3) run ``make test`` to test query
-4) run ``make end `` to destroy task containers
+2) run ``make setup`` to setup project
+3) run ``make test`` to run tests
+4) run ``make end `` to stop and remove task containers
 5) (optionally) run ``make test_e2e`` to test frontend
 
 ## Notes
