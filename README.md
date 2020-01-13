@@ -6,9 +6,10 @@
 1) Clone/Download repo
 2) run ``make build`` to build containers
 2) run ``make setup`` to setup project
-3) run ``make test`` to run tests
-4) run ``make end `` to stop and remove task containers
-5) (optionally) run ``make test_e2e`` to test frontend
+3) open http://localhost:8000 
+4) run ``make test`` to run tests
+5) run ``make end `` to stop and remove task containers
+6) (optionally) run ``make test_e2e`` to test frontend
 
 ## Notes
 1) "Any improvements are welcome and considered a plus." If you have something in mind, then send me email, I will add. Pagination and web sockets (which adds comments from another client) probably could be nice additions which are not included here.
