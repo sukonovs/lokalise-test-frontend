@@ -2,7 +2,6 @@ build:
 	docker-compose up --build -d
 
 setup:
-	cp .env.container.dist .env.local
 	docker-compose run php composer install --optimize-autoloader
 	docker-compose run node yarn install --no-lockfile
 	docker-compose run node yarn encore production
